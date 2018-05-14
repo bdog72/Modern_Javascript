@@ -1,9 +1,13 @@
-const product = {
-	name: 'Influence'
-};
+const puzzleEl = document.querySelector('#puzzle');
+const guessesEl = document.querySelector('#guesses');
+const game1 = new Hangman('Car Parts', 2);
 
-Object.prototype.hasOwnProperty = () => 'This is a new function';
+puzzleEl.textContent = game1.puzzle;
+guessesEl.textContent = game1.statusMessage;
 
-console.log(product.hasOwnProperty('name'));
-
-console.log(product);
+window.addEventListener('keypress', function(e) {
+	const guess = String.fromCharCode(e.charCode);
+	game1.makeGuess(guess);
+	puzzleEl.textContent = game1.puzzle;
+	guessesEl.textContent = game1.statusMessage;
+});
